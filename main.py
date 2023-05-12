@@ -15,12 +15,11 @@ def preview():
     result = top10rows.to_json(orient="records")
     return result
 
-@app.route('/icd', methods=["GET"])
-def preview(icdcode):
-    #R73
-        filter_value = request.args.get(icdcode)
-        filtered = df[df['principal_diagnosis_code']] == filter_value
-        return filtered.to_json(orient="records")
+@app.route('/icd/<value>', methods=["GET"])
+def icdcode(value):
+    print('value: ', value)
+    filtered = df[df['principal_diagnosis_code'] == value]
+    return filtered.to_json(orient="records")
 
 if __name__ == '__main__':
     app.run(debug=True)
