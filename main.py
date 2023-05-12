@@ -16,7 +16,7 @@ def preview():
     return result
 
 @app.route('/icd', methods=["GET"])
-def preview():
+def preview(icdcode):
     #R73
         filter_value = request.args.get(icdcode)
         filtered = df[df['principal_diagnosis_code']] == filter_value
